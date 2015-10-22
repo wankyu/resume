@@ -18,7 +18,7 @@
           <div class="namecard_contact">
             <address class="contact_mail"><a href="mailto:wankyu19@gmail.com">wankyu19@gmail.com</a></address>
             <address class="content_phone">010-6229-4619</address>
-          </div><a onclick="trackOutboundLink('http://kr.linkedin.com/in/wankyu');return false;" href="https://kr.linkedin.com/in/wankyu" class="namecard_linkedin">LinkedIn에서 더보기</a>
+          </div><a href="https://kr.linkedin.com/in/wankyu" class="namecard_linkedin _track">LinkedIn에서 더보기</a>
         </div>
         <div class="resume_detail">
           <div class="detail_profile">
@@ -34,7 +34,7 @@
                 <dd class="desc_text">만기제대</dd>
               </dl>
             </div>
-            <div class="resume_linkedin"><a onclick="trackOutboundLink('http://kr.linkedin.com/in/wankyu');return false;"  href="https://kr.linkedin.com/in/wankyu">LinkedIn에서 더보기</a></div>
+            <div class="resume_linkedin"><a href="http://kr.linkedin.com/in/wankyu" class="_track">LinkedIn에서 더보기</a></div>
           </div>
           <div class="detail_skills">
             <h2 class="skills_title">Skills</h2>
@@ -54,7 +54,7 @@
                 </li>
               </ul>
             </div>
-            <div class="resume_linkedin"><a onclick="trackOutboundLink('http://kr.linkedin.com/in/wankyu');return false;"  href="https://kr.linkedin.com/in/wankyu">LinkedIn에서 더보기</a></div>
+            <div class="resume_linkedin"><a href="http://kr.linkedin.com/in/wankyu" class="_track">LinkedIn에서 더보기</a></div>
           </div>
           <div class="detail_interests">
             <h2 class="interests_title">Interests</h2>
@@ -100,7 +100,7 @@
                 </dd>
               </dl>
             </div>
-            <div class="resume_linkedin"><a onclick="trackOutboundLink('http://kr.linkedin.com/in/wankyu');return false;"  href="https://kr.linkedin.com/in/wankyu">LinkedIn에서 더보기</a></div>
+            <div class="resume_linkedin"><a href="http://kr.linkedin.com/in/wankyu" class="_track">LinkedIn에서 더보기</a></div>
           </div>
           <div class="detail_education">
             <h2 class="education_title">Education</h2>
@@ -123,10 +123,7 @@
             </div>
           </div>
         </div>
-        <div class="resume_more">
-          <a onclick="trackOutboundLink('http://kr.linkedin.com/in/wankyu');return false;" href="http://kr.linkedin.com/in/wankyu">Wankyu Kim</a>
-          ::<a href="mailto:wankyu19@gmail.com">wankyu19@gmail.com</a>:: 010-6229-4619
-        </div>
+        <div class="resume_more"><a href="http://kr.linkedin.com/in/wankyu" class="_track">Wankyu Kim</a>::<a href="mailto:wankyu19@gmail.com">wankyu19@gmail.com</a>:: 010-6229-4619</div>
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -140,18 +137,20 @@
       ga('create', 'UA-68958693-1', 'auto');
       ga('send', 'pageview');
       
-      var trackOutboundLink = function(url) {
-          ga('send', 'event', 'outbound', 'click', url, {'hitCallback':
-              function () {
-                  document.location = url;
-              }
+      $(function() {
+          $('._track').on('click', function(e){
+              e.preventDefault();
+              var url = this.getAttribute('href');
+              ga('send', 'event', 'outbound', 'click', url, {'hitCallback':
+                  function () {
+                      document.location = url;
+                  }
+              });
           });
-      }
-      
-      jQuery(function() {
-          jQuery.scrollDepth({
+          $.scrollDepth({
               eventHandler: function(data) {
                   if (data.event == "ScrollTiming") {
+                      console.log('s');
                       ga('send', 'event', 'scroll depth', 'scroll', data.eventLabel, parseInt(data.eventLabel));
                   }
               }

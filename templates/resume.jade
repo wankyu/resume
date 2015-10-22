@@ -34,7 +34,7 @@ mixin resume_namecard
             .namecard_contact
                 address.contact_mail <a href="mailto:wankyu19@gmail.com">wankyu19@gmail.com</a>
                 address.content_phone 010-6229-4619
-            a.namecard_linkedin(onclick="trackOutboundLink('http://kr.linkedin.com/in/wankyu');return false;", href="https://kr.linkedin.com/in/wankyu")
+            a.namecard_linkedin._trackOutboundLink(href="https://kr.linkedin.com/in/wankyu")
                 | LinkedIn에서 더보기
 
 mixin detail_profile
@@ -126,11 +126,11 @@ mixin detail_etc
 
 mixin resume_linkedin
     .resume_linkedin
-        <a onclick="trackOutboundLink('http://kr.linkedin.com/in/wankyu');return false;"  href="https://kr.linkedin.com/in/wankyu">LinkedIn에서 더보기</a>
+        a._trackOutboundLink(href="http://kr.linkedin.com/in/wankyu") LinkedIn에서 더보기
 
 mixin resume_more
     .resume_more
-        <a onclick="trackOutboundLink('http://kr.linkedin.com/in/wankyu');return false;" href="http://kr.linkedin.com/in/wankyu">Wankyu Kim</a>
+        a._trackOutboundLink(href="http://kr.linkedin.com/in/wankyu") Wankyu Kim
         | ::
         a(href="mailto:wankyu19@gmail.com") wankyu19@gmail.com
         | :: 010-6229-4619
@@ -147,18 +147,20 @@ mixin scripts
         ga('create', 'UA-68958693-1', 'auto');
         ga('send', 'pageview');
 
-        var trackOutboundLink = function(url) {
-            ga('send', 'event', 'outbound', 'click', url, {'hitCallback':
-                function () {
-                    document.location = url;
-                }
+        $(function() {
+            $('._trackOutboundLink').on('click', function(e){
+                e.preventDefault();
+                var url = this.getAttribute('href');
+                ga('send', 'event', 'outbound', 'click', url, {'hitCallback':
+                    function () {
+                        document.location = url;
+                    }
+                });
             });
-        }
-
-        jQuery(function() {
-            jQuery.scrollDepth({
+            $.scrollDepth({
                 eventHandler: function(data) {
                     if (data.event == "ScrollTiming") {
+                        console.log('s');
                         ga('send', 'event', 'scroll depth', 'scroll', data.eventLabel, parseInt(data.eventLabel));
                     }
                 }
