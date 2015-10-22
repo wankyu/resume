@@ -1,6 +1,9 @@
 @charset "utf-8";
 $img_path: 'img/';
 
+$wrap_width: 414px;
+$a_grid: 79px;
+
 @font-face {
     font-family: 'Nanum Myeongjo';
     font-style: normal;
@@ -12,8 +15,11 @@ $img_path: 'img/';
         url(//fonts.gstatic.com/ea/nanummyeongjo/v4/NanumMyeongjo-Bold.ttf) format('truetype');
 }
 
-$wrap_width: 414px;
-$a_grid: 79px;
+@mixin onMobileScreen {
+    @media screen and (max-width: $wrap_width) {
+        @content;
+    }
+}
 
 html {
     font-size: 10px;
@@ -29,28 +35,8 @@ body {
         width: 94.8rem;
         margin: auto;
     }
-    @media screen and (max-width: $wrap_width) {
+    @include onMobileScreen {
         width: auto;
-    }
-}
-
-.resume {
-    .wrap & {
-        & {
-            margin: $a_grid auto;
-            padding: 40px $a_grid;
-            background-color: #f5f5f5;
-            border-width: 8px 0 2px 0;
-            border-style: solid;
-            border-color: #666;
-        }
-        @media screen and (max-width: $wrap_width) {
-            margin: 20px auto;
-            padding: 20px;
-        }
-    }
-    a {
-        color: #990003;
     }
 }
 
@@ -65,6 +51,26 @@ body {
 %font_kr {
     font-family: 'Nanum Myeongjo', serif;
     font-weight: 700;
+}
+
+.resume {
+    .wrap & {
+        & {
+            margin: $a_grid auto;
+            padding: 40px $a_grid;
+            background-color: #f5f5f5;
+            border-width: 8px 0 2px 0;
+            border-style: solid;
+            border-color: #666;
+        }
+        @include onMobileScreen {
+            margin: 20px auto;
+            padding: 20px;
+        }
+    }
+    a {
+        color: #990003;
+    }
 }
 
 .resume_namecard {
@@ -95,7 +101,7 @@ body {
             margin-top: 47px;
             margin-right: $a_grid;
         }
-        @media screen and (max-width: $wrap_width) {
+        @include onMobileScreen {
             float: none;
             margin-top: 20px;
         }
@@ -146,7 +152,7 @@ body {
         font-style: italic;
         font-weight: normal;
     }
-    @media screen and (max-width: $wrap_width) {
+    @include onMobileScreen {
         float: none;
         margin-bottom: 1em;
         font-size: 25px;
@@ -157,7 +163,7 @@ body {
         float: right;
         width: 80%;
     }
-    @media screen and (max-width: $wrap_width) {
+    @include onMobileScreen {
         float: none;
         width: auto;
     }
@@ -181,7 +187,7 @@ body {
             font-size: 17.8px;
             letter-spacing: -0.02em;
         }
-        @media screen and (max-width: $wrap_width) {
+        @include onMobileScreen {
             margin-right: 0;
         }
     }
@@ -221,7 +227,7 @@ body {
             width: 32%;
             list-style: none;
         }
-        @media screen and (max-width: $wrap_width) {
+        @include onMobileScreen {
             float: none;
             width: auto;
         }
