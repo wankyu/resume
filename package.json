@@ -1,0 +1,22 @@
+{
+  "name": "resume",
+  "version": "1.0.0",
+  "description": "Wankyu's resume document",
+  "main": "resume.html",
+  "scripts": {
+    "css": "npm run css:generate && npm run css:min",
+    "css:generate": "node node_modules/node-sass/bin/node-sass styles/resume.scss css/resume.css",
+    "css:min": "echo `node node_modules/cssmin/bin/cssmin css/resume.css` > css/resume.css",
+    "html": "npm run html:generate",
+    "html:generate": "node node_modules/jade/bin/jade.js --path ./ --pretty < templates/resume.jade > resume.html",
+    "deploy": "npm run css && npm run html",
+    "backup": "cp resume.html backup/resume.html.`date +%Y%m%d`.bak"
+  },
+  "author": "Wankyu",
+  "license": "ISC",
+  "devDependencies": {
+    "cssmin": "^0.4.3",
+    "jade": "^1.11.0",
+    "node-sass": "^3.3.3"
+  }
+}

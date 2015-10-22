@@ -1,0 +1,368 @@
+@charset "utf-8";
+$img_path: 'img/';
+
+@font-face {
+    font-family: 'Nanum Myeongjo';
+    font-style: normal;
+    font-weight: 600;
+    src: url(//fonts.gstatic.com/ea/nanummyeongjo/v4/NanumMyeongjo-Bold.eot);
+    src: url(//fonts.gstatic.com/ea/nanummyeongjo/v4/NanumMyeongjo-Bold.eot?#iefix) format('embedded-opentype'),
+        url(//fonts.gstatic.com/ea/nanummyeongjo/v4/NanumMyeongjo-Bold.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/nanummyeongjo/v4/NanumMyeongjo-Bold.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/nanummyeongjo/v4/NanumMyeongjo-Bold.ttf) format('truetype');
+}
+
+$wrap_width: 414px;
+$a_grid: 79px;
+
+html {
+    font-size: 10px;
+}
+body {
+    margin: 0;
+    font-family: Georgia, 'Nanum Myeongjo', serif;
+    font-size: 1.4em;
+    line-height: 1.4;
+}
+.wrap {
+    & {
+        width: 94.8rem;
+        margin: auto;
+    }
+    @media screen and (max-width: $wrap_width) {
+        width: auto;
+    }
+}
+
+.resume {
+    .wrap & {
+        & {
+            margin: $a_grid auto;
+            padding: 40px $a_grid;
+            background-color: #f5f5f5;
+            border-width: 8px 0 2px 0;
+            border-style: solid;
+            border-color: #666;
+        }
+        @media screen and (max-width: $wrap_width) {
+            margin: 20px auto;
+            padding: 20px;
+        }
+    }
+    a {
+        color: #990003;
+    }
+}
+
+%float_wrap {
+    &::before,
+    &::after {
+        display: table;
+        clear: both;
+        content: '';
+    }
+}
+%font_kr {
+    font-family: 'Nanum Myeongjo', serif;
+    font-weight: 700;
+}
+
+.resume_namecard {
+    .resume & {
+        @extend %float_wrap;
+        position: relative;
+    }
+    .namecard_name {
+        float: left;
+    }
+    .name_text {
+        margin: 0;
+        font-size: 48px;
+        font-weight: normal;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+    .name_title {
+        font-size: 20px;
+        font-style: italic;
+        font-weight: normal;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    .namecard_contact {
+        & {
+            float: right;
+            margin-top: 47px;
+            margin-right: $a_grid;
+        }
+        @media screen and (max-width: $wrap_width) {
+            float: none;
+            margin-top: 20px;
+        }
+    }
+    .contact_mail {
+        font-size: 16px;
+        font-style: normal;
+    }
+    .content_phone {
+        font-size: 16px;
+        font-style: normal;
+    }
+    .namecard_linkedin {
+        overflow: hidden;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 50px;
+        height: 50px;
+        text-indent: 150%;
+        white-space: nowrap;
+        background: url($img_path + 'linkedin_icon.svg') 0 0 no-repeat;
+        background-size: 100%;
+    }
+}
+
+.resume_detail {
+    .resume & {
+    }
+    .resume_linkedin {
+        clear: both;
+        margin-top: 10px;
+        text-align: right;
+    }
+}
+
+%detail_section {
+    @extend %float_wrap;
+    margin-top: 1rem;
+    padding-top: 2rem;
+    border-top:1px solid #ccc;
+}
+%detail_section_title {
+    & {
+        float: left;
+        margin: 0;
+        font-size: 20px;
+        font-style: italic;
+        font-weight: normal;
+    }
+    @media screen and (max-width: $wrap_width) {
+        float: none;
+        margin-bottom: 1em;
+        font-size: 25px;
+    }
+}
+%detail_section_content {
+    & {
+        float: right;
+        width: 80%;
+    }
+    @media screen and (max-width: $wrap_width) {
+        float: none;
+        width: auto;
+    }
+}
+
+.detail_profile {
+    .resume_detail & {
+        @extend %detail_section;
+        padding-top: 4rem;
+    }
+    .profile_title {
+        @extend %detail_section_title;
+    }
+    .profile_content {
+        @extend %detail_section_content;
+    }
+    .profile_text {
+        & {
+            @extend %font_kr;
+            margin: 0 $a_grid 0 0;
+            font-size: 17.8px;
+            letter-spacing: -0.02em;
+        }
+        @media screen and (max-width: $wrap_width) {
+            margin-right: 0;
+        }
+    }
+    .profile_desc {
+        @extend %font_kr;
+        margin: 2rem 0 0 0;
+        padding-top: 2rem;
+        border-top:1px solid #ccc;
+        line-height: 1.5;
+    }
+    .desc_title {
+        float: left;
+        width: $a_grid;
+    }
+    .desc_text {
+        margin: 0;
+    }
+}
+
+.detail_skills {
+    .resume_detail & {
+        @extend %detail_section;
+    }
+    .skills_title {
+        @extend %detail_section_title;
+    }
+    .skills_content {
+        @extend %detail_section_content;
+    }
+    .skills_list {
+        margin: 0;
+        padding: 0;
+    }
+    .skills_item {
+        & {
+            float: left;
+            width: 32%;
+            list-style: none;
+        }
+        @media screen and (max-width: $wrap_width) {
+            float: none;
+            width: auto;
+        }
+    }
+    .list_title {
+        margin: 0;
+        font-size: 20px;
+        font-weight: normal;
+    }
+    .list_desc {
+        @extend %font_kr;
+        padding-right: ($a_grid / 2);
+    }
+}
+
+.detail_interests {
+    .resume_detail & {
+        @extend %detail_section;
+    }
+    .interests_title {
+        @extend %detail_section_title;
+    }
+    .interests_content {
+        @extend %detail_section_content;
+    }
+    .interests_list {
+        margin: 0;
+        padding: 0;
+        font-size: 0;
+        line-height: 1.8;
+    }
+    li {
+        display: inline-block;
+        width: 32%;
+        list-style: none;
+        font-size: 14px;
+        vertical-align: top;
+    }
+    li:nth-child(n+4) {
+        border-top: 1px solid #ccc;
+    }
+}
+
+.detail_exps {
+    .resume_detail & {
+        @extend %detail_section;
+    }
+    .exps_title {
+        @extend %detail_section_title;
+    }
+    .exps_content {
+        @extend %detail_section_content;
+    }
+    .exps_list {
+        position: relative;
+        margin: 0;
+    }
+    .exps_list + .exps_list {
+        padding-top: 1em;
+        border-top:1px solid #ccc;
+    }
+    .list_company {
+        font-size: 20px;
+    }
+    .list_title {
+        @extend %font_kr;
+        margin: 0;
+    }
+    .list_period {
+        position: absolute;
+        top: 0;
+        right: ($a_grid / 4);
+        margin: 0;
+        line-height: 28px;
+    }
+    .exps_list + .exps_list .list_period {
+        top: 1em;
+    }
+    .list_desc {
+        @extend %font_kr;
+        margin: 0;
+    }
+}
+
+.detail_education {
+    .resume_detail & {
+        @extend %detail_section;
+    }
+    .education_title {
+        @extend %detail_section_title;
+    }
+    .education_content {
+        @extend %detail_section_content;
+        @extend %font_kr;
+    }
+    .education_list {
+        margin: 0;
+    }
+    .list_title {
+        font-size: 20px;
+    }
+    .list_desc {
+        margin: 0;
+    }
+}
+
+.detail_etc {
+    .resume_detail & {
+        @extend %detail_section;
+    }
+    .etc_title {
+        @extend %detail_section_title;
+    }
+    .etc_content {
+        @extend %detail_section_content;
+        @extend %font_kr;
+    }
+    .etc_list {
+        margin: 0;
+    }
+    .list_title {
+        float: left;
+        width: $a_grid;
+    }
+    .list_desc {
+        & {
+            margin: 0;
+        }
+        sub {
+            vertical-align: baseline;
+        }
+    }
+}
+
+.resume_more {
+    .resume & {
+        margin-top: 5rem;
+        padding-top: 2rem;
+        border-top:1px solid #ccc;
+        text-align: center;
+        font-size: 12px;
+    }
+}
+

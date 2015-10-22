@@ -1,0 +1,158 @@
+mixin html
+    doctype html
+    html(lang="ko")
+        head
+            meta(charset="utf-8")
+            title Wankyu Kim | Front-end Developer
+            meta(name="viewport", content="width=device-width")
+            meta(http-equiv="Content-Style-Type", content="text/css")
+            meta(http-equiv="Content-Script-Type", content="text/javascript")
+            style
+                include css/resume.css
+        body
+            .wrap
+                +resume
+            +scripts
+
+mixin resume
+    .resume
+        +resume_namecard
+        .resume_detail
+            +detail_profile
+            +detail_skills
+            +detail_interests
+            +detail_exps
+            +detail_education
+            +detail_etc
+        +resume_more
+
+mixin resume_namecard
+    .resume_namecard
+            .namecard_name
+                <h1 class="name_text">W<span style="margin:0 -1px 0 -7px">a</span>n<span style="margin:0 0 0 -2px">k</span>y<span style="margin:0 -2px 0 -1px">u</span> Ki<span style="margin:0 0 0 -3px">m</span></h1>
+                strong.name_title UI Developer, Front-end Developer
+            .namecard_contact
+                address.contact_mail <a href="mailto:wankyu19@gmail.com">wankyu19@gmail.com</a>
+                address.content_phone 010-6229-4619
+            a.namecard_linkedin(onclick="trackOutboundLink('http://kr.linkedin.com/in/wankyu');return false;", href="https://kr.linkedin.com/in/wankyu")
+                | LinkedIn에서 더보기
+
+mixin detail_profile
+    .detail_profile
+        h2.profile_title Profile
+        .profile_content
+            p.profile_text 더 나은 웹을 목표로 하며 즐겁고 재밌는 것을 끊임없이 만들어나가려 노력하고 있습니다. 다양한 경험을 쌓으며 꿈과 목표를 다듬어나가고 있습니다.
+            dl.profile_desc
+                dt.desc_title 생년월일
+                dd.desc_text 1981.07.03
+                dt.desc_title 결혼유무
+                dd.desc_text 미혼
+                dt.desc_title 군필여부
+                dd.desc_text 만기제대
+        +resume_linkedin
+
+mixin detail_skills
+    .detail_skills
+        h2.skills_title Skills
+        .skills_content
+            ul.skills_list
+                li.skills_item
+                    h3.list_title HTML
+                    p.list_desc 의미있고 구조화된 마크업을 기반으로 협업에 유연하게 대처할 수 있는 문서를 작성할 수 있습니다.
+                li.skills_item
+                    h3.list_title CSS
+                    p.list_desc 다양한 요구사항에 빠르게 대응할 수 있는 설계로 더 나은 사이트 구현에 기여합니다.
+                li.skills_item
+                    h3.list_title Javascript
+                    p.list_desc 사용성 향상에 기여하는 다양한 UI를 구현하여 사이트를 풍부하게 만듭니다. 
+        +resume_linkedin
+
+mixin detail_interests
+    .detail_interests
+        h2.interests_title Interests
+        .interests_content
+            ul.interests_list
+                li HTML
+                li CSS
+                li Javascript
+                li Photoshop
+                li Accessibility / Usability
+                li CVS / Subversion
+                li PHP
+                li Perl
+                li Python
+
+mixin detail_exps
+    .detail_exps
+        h2.exps_title Experiences
+        .exps_content
+            dl.exps_list
+                dt.list_company NHN Techology services
+                dd.list_title UI개발자
+                dd.list_period 2010.05-
+                dd.list_desc
+                    p 개인화페이지, 웹메신저 관련 마크업 담당 <br>- 협업에 관한 다양한 고민을 할 수 있는 시간을 가졌습니다.
+            dl.exps_list
+                dt.list_company I&amp;S Inc.
+                dd.list_title Front-End 개발자
+                dd.list_period 2008.03-2010.05
+                dd.list_desc
+                    p Yahoo! Korea의 프론트페이지와 "거기"서비스의 Front-End개발을 담당 <br>- 다양한 framework을 기반으로 하는 큰 프로젝트를 경험했습니다.
+            dl.exps_list
+                dt.list_company Megazone
+                dd.list_title 웹퍼블리셔
+                dd.list_period 2007.03-2008.03
+                dd.list_desc
+                    p 기업사이트, 교육학술정보원 사이트 등의 HTML과 CSS, Javascript개발을 담당 <br>- 여러가지 요구사항의 사이트를 만들어보는 경험을 했습니다.
+        +resume_linkedin
+
+mixin detail_education
+    .detail_education
+        h2.education_title Education
+        .education_content
+            dl.education_list
+                <dt class="list_title">가톨릭대학교</dt>
+                <dd class="list_desc">사회학 전공(자퇴)</dd>
+
+mixin detail_etc
+    .detail_etc
+        h2.etc_title Etc.
+        .etc_content
+            dl.etc_list
+                <dt class="list_title">자격사항</dt>
+                <dd class="list_desc">정보처리기능사 <sub>(2009.06.04)</sub></dd>
+                <dt class="list_title">어학사항</dt>
+                <dd class="list_desc">JLPT 1급 <sub>(2009.07)</sub></dd>
+
+mixin resume_linkedin
+    .resume_linkedin
+        <a onclick="trackOutboundLink('http://kr.linkedin.com/in/wankyu');return false;"  href="https://kr.linkedin.com/in/wankyu">LinkedIn에서 더보기</a>
+
+mixin resume_more
+    .resume_more
+        <a onclick="trackOutboundLink('http://kr.linkedin.com/in/wankyu');return false;" href="http://kr.linkedin.com/in/wankyu">Wankyu Kim</a>
+        | ::
+        a(href="mailto:wankyu19@gmail.com") wankyu19@gmail.com
+        | :: 010-6229-4619
+
+mixin scripts
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
+    script.
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-68958693-1', 'auto');
+        ga('send', 'pageview');
+
+        var trackOutboundLink = function(url) {
+            ga('send', 'event', 'outbound', 'click', url, {'hitCallback':
+                function () {
+                    document.location = url;
+                }
+            });
+        }
+
++html
+
