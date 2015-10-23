@@ -161,7 +161,6 @@ mixin scripts
             $.scrollDepth({
                 eventHandler: function(data) {
                     if (data.event == "ScrollTiming") {
-                        console.log('s');
                         ga('send', 'event', 'scroll depth', 'scroll', data.eventLabel, parseInt(data.eventLabel));
                     }
                 }
